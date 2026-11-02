@@ -101,9 +101,8 @@
   .hero-grid {
     position: relative;
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: clamp(32px, 5vw, 72px);
-    align-items: end;
+    align-items: stretch; padding-bottom: clamp(56px, 8vw, 104px);
   }
-  .hero-copy { padding-bottom: clamp(56px, 8vw, 104px); }
   .hero-kicker { font: 400 italic 20px/1.4 var(--serif); color: var(--terracotta-warm); margin-bottom: 22px; }
   .hero h1 {
     font: 300 clamp(44px, 6.6vw, 82px)/1.02 var(--serif);
@@ -121,9 +120,9 @@
   .facts dd { margin: 0; font: 400 18px/1.3 var(--serif); color: var(--cream); white-space: nowrap; }
   @media (min-width: 901px) and (max-width: 1099px) { .facts dd { white-space: normal; } }
   .hero-note { margin-top: 18px; font-size: 13px; color: var(--on-dark-soft); }
-  /* Portrait sits inside the grid at a fixed 4:5 and stands on the hero's bottom edge. */
-  .hero-photo { margin: 0; }
-  .hero-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 45% 18%; border-top: 2px solid var(--terracotta); }
+  /* Portrait runs level with the text block: top at the kicker, bottom at the last line. */
+  .hero-photo { position: relative; margin: 0; }
+  .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 22%; border-top: 2px solid var(--terracotta); }
 
   /* ---------- Shift ---------- */
   .shift { padding: clamp(80px, 11vw, 140px) 0; }
@@ -277,8 +276,9 @@
     .hero { padding-top: 120px; }
     .hero-grid, .shift-grid, .ladder-head, .ladder-foot, .depth-text, .martin-grid, .reg-grid, .faq-grid { grid-template-columns: 1fr; }
     .hero-copy { padding-bottom: 0; }
+    .hero-grid { padding-bottom: 0; }
     .hero-photo { margin: 48px calc(-1 * var(--gutter)) 0; }
-    .hero-photo img { aspect-ratio: 16 / 10; object-position: 45% 15%; }
+    .hero-photo img { position: static; height: auto; aspect-ratio: 16 / 10; object-position: 45% 15%; }
     .levels { grid-template-columns: 1fr; }
     .level, .level + .level { padding: 26px 0 10px; border-left: 0; border-top: 0.5px solid rgba(24,30,25,0.16); }
     .level.human { padding: 26px 24px 14px; }
