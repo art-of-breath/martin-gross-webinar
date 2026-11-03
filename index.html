@@ -102,6 +102,10 @@
     position: relative;
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: clamp(32px, 5vw, 72px);
     align-items: stretch; padding-bottom: clamp(56px, 8vw, 104px);
+    /* Text and photo fill the first screen at every size, logos follow below the fold.
+       --zoom undoes the large-screen body zoom; 150px is the hero's top padding. */
+    min-height: calc(100vh / var(--zoom, 1) - 150px); min-height: calc(100svh / var(--zoom, 1) - 150px);
+    align-content: center;
   }
   /* Event name above the promise */
   .hero-event { border-left: 2px solid var(--terracotta-warm); padding: 2px 0 2px 16px; margin-bottom: 30px; }
@@ -133,13 +137,14 @@
   .dark .mk::before { background: var(--terracotta-warm); }
 
   /* ---------- Trust logos ---------- */
-  .trust { background: var(--parchment); padding: clamp(44px, 6vw, 72px) 0 clamp(40px, 5vw, 60px); border-bottom: 0.5px solid var(--line-light); }
-  .trust .eyebrow { justify-content: center; color: var(--muted); margin-bottom: clamp(26px, 3vw, 36px); }
+  .trust { position: relative; border-top: 0.5px solid var(--line-dark); padding: clamp(28px, 3.5vw, 44px) 0 clamp(32px, 4vw, 52px); }
+  .trust .eyebrow { justify-content: center; color: var(--on-dark-soft); margin-bottom: clamp(22px, 2.5vw, 30px); }
   .trust .eyebrow::before { display: none; }
-  .logos { list-style: none; margin: 0 auto; padding: 0; max-width: 1040px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 30px 46px; }
-  .logos img { width: auto; height: auto; max-height: 34px; max-width: 132px; filter: brightness(0) invert(25%); }
-  .logos img.sq { max-height: 46px; }
-  .logos img.orig { filter: none; }
+  .logos { list-style: none; margin: 0 auto; padding: 0; max-width: 1100px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 26px 44px; }
+  .logos img { width: auto; height: auto; max-height: 30px; max-width: 124px; filter: brightness(0) invert(1); opacity: 0.62; }
+  .logos img.sq { max-height: 40px; }
+  /* Zeiss and BMW stay in their own colours, as on martingross.org */
+  .logos img.orig { filter: none; opacity: 0.8; }
 
   /* ---------- Gains: four steps up, the webinar's own motif ---------- */
   .gains { background: #A94F33; color: rgba(255,255,255,0.86); padding: clamp(80px, 10vw, 128px) 0 clamp(72px, 9vw, 112px); position: relative; overflow: hidden; }
@@ -308,15 +313,15 @@
   footer a:hover { color: var(--cream); }
 
   /* ---------- Large screens (2K, 4K at 100 %) ---------- */
-  @media (min-width: 2200px) { body { zoom: 1.33; } }
-  @media (min-width: 3200px) { body { zoom: 1.9; } }
+  @media (min-width: 2200px) { :root { --zoom: 1.33; } body { zoom: 1.33; } }
+  @media (min-width: 3200px) { :root { --zoom: 1.9; } body { zoom: 1.9; } }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
     .hero { padding-top: 120px; }
     .hero-grid, .shift-grid, .ladder-head, .ladder-foot, .depth-text, .martin-grid, .reg-grid, .faq-grid { grid-template-columns: 1fr; }
     .hero-copy { padding-bottom: 0; }
-    .hero-grid { padding-bottom: 0; }
+    .hero-grid { padding-bottom: 0; min-height: 0; }
     .hero-photo { margin: 48px calc(-1 * var(--gutter)) 0; }
     .hero-photo img { position: static; height: auto; aspect-ratio: 16 / 10; object-position: 45% 15%; }
     .levels { grid-template-columns: 1fr; }
@@ -407,36 +412,36 @@
         <img src="images/martin-portrait.jpg" alt="Martin Groß, Trainer und Coach für Führungskräfte" width="1067" height="1600">
       </figure>
     </div>
-  </section>
-
-  <!-- ===== Trust logos (wie auf martingross.org) ===== -->
-  <section class="trust" aria-label="Auswahl an Auftraggebern">
-    <div class="wrap">
-      <p class="eyebrow">Auswahl an Auftraggebern</p>
-      <ul class="logos">
-        <li><img class="sq orig" src="images/logos/zeiss.png" alt="Zeiss" width="120" height="120"></li>
-        <li><img src="images/logos/susonity.png" alt="Susonity" width="479" height="120"></li>
-        <li><img src="images/logos/tuev-rheinland.png" alt="TÜV Rheinland" width="621" height="120"></li>
-        <li><img src="images/logos/shmf.png" alt="Schleswig-Holstein Musik Festival" width="446" height="120"></li>
-        <li><img src="images/logos/otto.png" alt="Otto" width="355" height="120"></li>
-        <li><img src="images/logos/rhenus.png" alt="Rhenus Logistics" width="574" height="120"></li>
-        <li><img src="images/logos/liz-mohn-stiftung.png" alt="Liz Mohn Stiftung" width="465" height="120"></li>
-        <li><img src="images/logos/kfw.png" alt="KfW" width="330" height="120"></li>
-        <li><img src="images/logos/mercedes-benz.png" alt="Mercedes-Benz" width="473" height="120"></li>
-        <li><img class="sq" src="images/logos/o2.png" alt="O2" width="124" height="120"></li>
-        <li><img src="images/logos/iu.png" alt="IU Internationale Hochschule" width="338" height="120"></li>
-        <li><img src="images/logos/grandcentrix.png" alt="grandcentrix" width="407" height="120"></li>
-        <li><img class="sq" src="images/logos/giz.png" alt="GIZ" width="120" height="120"></li>
-        <li><img class="sq" src="images/logos/bayer.png" alt="Bayer" width="120" height="120"></li>
-        <li><img class="sq orig" src="images/logos/bmw.png" alt="BMW" width="120" height="120"></li>
-        <li><img src="images/logos/db-schenker.png" alt="DB Schenker" width="669" height="120"></li>
-        <li><img src="images/logos/gastromatic.png" alt="gastromatic" width="268" height="120"></li>
-        <li><img src="images/logos/deloitte.png" alt="Deloitte" width="551" height="120"></li>
-        <li><img src="images/logos/aurelis.png" alt="Aurelis Real Estate" width="152" height="100"></li>
-        <li><img src="images/logos/ostermeier.png" alt="Ostermeier Großhandel" width="737" height="120"></li>
-      </ul>
+    <!-- ===== Trust logos (wie auf martingross.org) ===== -->
+    <div class="trust" aria-label="Auswahl an Auftraggebern">
+      <div class="wrap">
+        <p class="eyebrow">Auswahl an Auftraggebern</p>
+        <ul class="logos">
+          <li><img class="sq orig" src="images/logos/zeiss.png" alt="Zeiss" width="120" height="120"></li>
+          <li><img src="images/logos/susonity.png" alt="Susonity" width="479" height="120"></li>
+          <li><img src="images/logos/tuev-rheinland.png" alt="TÜV Rheinland" width="621" height="120"></li>
+          <li><img src="images/logos/shmf.png" alt="Schleswig-Holstein Musik Festival" width="446" height="120"></li>
+          <li><img src="images/logos/otto.png" alt="Otto" width="355" height="120"></li>
+          <li><img src="images/logos/rhenus.png" alt="Rhenus Logistics" width="574" height="120"></li>
+          <li><img src="images/logos/liz-mohn-stiftung.png" alt="Liz Mohn Stiftung" width="465" height="120"></li>
+          <li><img src="images/logos/kfw.png" alt="KfW" width="330" height="120"></li>
+          <li><img src="images/logos/mercedes-benz.png" alt="Mercedes-Benz" width="473" height="120"></li>
+          <li><img class="sq" src="images/logos/o2.png" alt="O2" width="124" height="120"></li>
+          <li><img src="images/logos/iu.png" alt="IU Internationale Hochschule" width="338" height="120"></li>
+          <li><img src="images/logos/grandcentrix.png" alt="grandcentrix" width="407" height="120"></li>
+          <li><img class="sq" src="images/logos/giz.png" alt="GIZ" width="120" height="120"></li>
+          <li><img class="sq" src="images/logos/bayer.png" alt="Bayer" width="120" height="120"></li>
+          <li><img class="sq orig" src="images/logos/bmw.png" alt="BMW" width="120" height="120"></li>
+          <li><img src="images/logos/db-schenker.png" alt="DB Schenker" width="669" height="120"></li>
+          <li><img src="images/logos/gastromatic.png" alt="gastromatic" width="268" height="120"></li>
+          <li><img src="images/logos/deloitte.png" alt="Deloitte" width="551" height="120"></li>
+          <li><img src="images/logos/aurelis.png" alt="Aurelis Real Estate" width="152" height="100"></li>
+          <li><img src="images/logos/ostermeier.png" alt="Ostermeier Großhandel" width="737" height="120"></li>
+        </ul>
+      </div>
     </div>
   </section>
+
 
   <!-- ===== Gains ===== -->
   <section class="gains" aria-labelledby="gains-title">
