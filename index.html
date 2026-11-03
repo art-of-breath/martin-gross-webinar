@@ -103,7 +103,10 @@
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: clamp(32px, 5vw, 72px);
     align-items: stretch; padding-bottom: clamp(56px, 8vw, 104px);
   }
-  .hero-kicker { font: 400 italic 20px/1.4 var(--serif); color: var(--terracotta-warm); margin-bottom: 22px; }
+  /* Event name above the promise */
+  .hero-event { border-left: 2px solid var(--terracotta-warm); padding: 2px 0 2px 16px; margin-bottom: 30px; }
+  .hero-event b { display: block; font: 400 italic 23px/1.25 var(--serif); color: var(--cream); }
+  .hero-event span { display: block; margin-top: 4px; font: 400 13px/1.4 var(--sans); letter-spacing: 0.02em; color: var(--on-dark-soft); }
   .hero h1 {
     font: 300 clamp(44px, 6.6vw, 82px)/1.02 var(--serif);
     color: var(--cream); letter-spacing: -0.02em;
@@ -124,24 +127,60 @@
   .hero-photo { position: relative; margin: 0; }
   .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 22%; border-top: 2px solid var(--terracotta); }
 
+  /* List marker: a small terracotta square instead of a dash (positive, not a minus) */
+  .mk { position: relative; padding-left: 24px; }
+  .mk::before { content: ""; position: absolute; left: 0; top: 0.78em; width: 6px; height: 6px; background: var(--terracotta); }
+  .dark .mk::before { background: var(--terracotta-warm); }
+
+  /* ---------- Trust logos ---------- */
+  .trust { background: var(--parchment); padding: clamp(44px, 6vw, 72px) 0 clamp(40px, 5vw, 60px); border-bottom: 0.5px solid var(--line-light); }
+  .trust .eyebrow { justify-content: center; color: var(--muted); margin-bottom: clamp(26px, 3vw, 36px); }
+  .trust .eyebrow::before { display: none; }
+  .logos { list-style: none; margin: 0 auto; padding: 0; max-width: 1040px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 30px 46px; }
+  .logos img { width: auto; height: auto; max-height: 34px; max-width: 132px; filter: brightness(0) invert(25%); }
+  .logos img.sq { max-height: 46px; }
+  .logos img.orig { filter: none; }
+
+  /* ---------- Gains: four steps up, the webinar's own motif ---------- */
+  .gains { background: #A94F33; color: rgba(255,255,255,0.86); padding: clamp(80px, 10vw, 128px) 0 clamp(72px, 9vw, 112px); position: relative; overflow: hidden; }
+  .gains .h2 { color: var(--white); max-width: 18ch; }
+  .gains .h2 em { font-style: italic; color: var(--cream); opacity: 0.78; }
+  .steps { list-style: none; margin: clamp(32px, 4vw, 40px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); align-items: start; }
+  .steps li { position: relative; border-top: 1px solid rgba(255,255,255,0.7); padding: 26px 28px 0 0; }
+  .steps li + li { padding-left: 24px; }
+  /* Each step sits one riser higher than the one before; the riser is drawn on its left edge */
+  .steps li:nth-child(1) { margin-top: 144px; }
+  .steps li:nth-child(2) { margin-top: 96px; }
+  .steps li:nth-child(3) { margin-top: 48px; }
+  .steps li + li::before { content: ""; position: absolute; left: 0; top: -1px; width: 1px; height: 49px; background: rgba(255,255,255,0.7); }
+  .steps li:last-child { border-top: 3px solid var(--white); }
+  .steps h3 { font: 400 28px/1.15 var(--serif); color: var(--white); margin-bottom: 12px; }
+  .steps p { font-size: 16px; line-height: 1.7; max-width: 26em; }
+  .js .steps li { opacity: 0; transform: translateY(28px); transition: opacity 640ms ease, transform 640ms cubic-bezier(.2,.7,.2,1); }
+  .js .steps.in li { opacity: 1; transform: none; }
+  .js .steps.in li:nth-child(2) { transition-delay: 140ms; }
+  .js .steps.in li:nth-child(3) { transition-delay: 280ms; }
+  .js .steps.in li:nth-child(4) { transition-delay: 420ms; }
+
   /* ---------- Shift ---------- */
   .shift { padding: clamp(80px, 11vw, 140px) 0; }
   .shift-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(32px, 7vw, 110px); }
-  .shift .lead + .lead { margin-top: 20px; }
+  .shift .h2 em, .h2 em { font-style: italic; color: var(--terracotta); }
+  .dark .h2 em { color: var(--terracotta-warm); }
+  .moments { list-style: none; margin: 30px 0 0; padding: 0; border-top: 0.5px solid var(--line-light); }
+  .moments li { padding: 18px 0 18px 26px; border-bottom: 0.5px solid var(--line-light); font: 400 clamp(21px, 2.1vw, 25px)/1.35 var(--serif); color: var(--ink); }
+  .moments li::before { top: calc(18px + 0.62em); }
+  .tries { margin-top: clamp(72px, 9vw, 112px); }
+  .tries-grid { margin-top: clamp(32px, 4vw, 48px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .try { background: var(--cream); padding: clamp(24px, 3vw, 34px); border-top: 2px solid rgba(196,96,64,0.45); }
+  .try h3 { font: 400 22px/1.25 var(--serif); color: var(--ink); margin-bottom: 12px; }
+  .try p { font-size: 15.5px; line-height: 1.75; }
   .tasks { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 8px 10px; }
   .tasks span {
     font: 400 14px/1 var(--sans); color: var(--muted);
     padding: 9px 14px; border: 0.5px solid rgba(24,30,25,0.18);
     text-decoration: line-through; text-decoration-color: rgba(196,96,64,0.55);
   }
-  .skills { margin-top: 48px; border-top: 0.5px solid var(--line-light); }
-  .skills li {
-    list-style: none; display: flex; gap: 16px; align-items: baseline;
-    padding: 15px 0; border-bottom: 0.5px solid var(--line-light);
-    font: 400 21px/1.35 var(--serif); color: var(--ink);
-  }
-  .skills li::before { content: "—"; color: var(--terracotta); font-family: var(--sans); font-size: 15px; }
-  .skills { padding: 0; margin-bottom: 0; }
   .aside { margin-top: 28px; font: 300 italic 19px/1.6 var(--serif); color: var(--slate); max-width: 30em; }
 
   /* ---------- Ladder: the one bold moment ---------- */
@@ -190,19 +229,22 @@
   .day-date { font: 500 11px/1 var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 14px; }
   .day h3 { font: 300 32px/1.15 var(--serif); color: var(--ink); margin-bottom: 22px; }
   .day ul { margin: 0; padding: 0; list-style: none; }
-  .day li { padding: 11px 0 11px 26px; position: relative; border-top: 0.5px solid var(--line-light); }
-  .day li::before { content: "—"; position: absolute; left: 0; color: var(--terracotta); }
+  .day li { padding: 12px 0 12px 24px; border-top: 0.5px solid var(--line-light); }
+  .day li::before { top: calc(12px + 0.78em); }
+  .day li b { font-weight: 500; color: var(--ink); }
   .breath-note { margin-top: 26px; padding: 20px 22px; background: var(--cream); font-size: 14px; line-height: 1.75; }
   .breath-note strong { font-weight: 500; color: var(--ink); }
 
   /* ---------- Für wen ---------- */
   .audience { padding: clamp(80px, 11vw, 140px) 0; }
   .aud-grid { margin-top: clamp(40px, 6vw, 64px); display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .aud { background: rgba(255,255,255,0.035); padding: clamp(28px, 4vw, 44px); border-top: 2px solid var(--terracotta-warm); }
+  .aud { background: rgba(255,255,255,0.035); border-top: 2px solid var(--terracotta-warm); }
+  .aud img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .aud-body { padding: clamp(28px, 4vw, 44px); }
   .aud h3 { font: 400 26px/1.2 var(--serif); color: var(--cream); margin-bottom: 14px; }
   .aud ul { margin: 18px 0 0; padding: 0; list-style: none; }
-  .aud li { padding: 10px 0 10px 24px; position: relative; border-top: 0.5px solid var(--line-dark); }
-  .aud li::before { content: "—"; position: absolute; left: 0; color: var(--terracotta-warm); }
+  .aud li { padding: 10px 0 10px 24px; border-top: 0.5px solid var(--line-dark); }
+  .aud li::before { top: calc(10px + 0.78em); }
   .aud-foot { margin-top: 36px; max-width: 40em; color: var(--on-dark-soft); }
 
   /* ---------- Martin ---------- */
@@ -216,8 +258,6 @@
   .numbers div { padding: 20px 16px 0 0; }
   .numbers b { display: block; font: 300 34px/1 var(--serif); color: var(--ink); margin-bottom: 8px; }
   .numbers span { font-size: 13px; line-height: 1.5; color: var(--muted); display: block; }
-  .clients { margin-top: 30px; font-size: 14px; color: var(--muted); }
-  .clients strong { font-weight: 500; color: var(--slate); }
 
   /* ---------- Anmeldung ---------- */
   .register { padding: clamp(80px, 11vw, 140px) 0; position: relative; overflow: hidden; }
@@ -282,7 +322,13 @@
     .levels { grid-template-columns: 1fr; }
     .level, .level + .level { padding: 26px 0 10px; border-left: 0; border-top: 0.5px solid rgba(24,30,25,0.16); }
     .level.human { padding: 26px 24px 14px; }
-    .days, .aud-grid { grid-template-columns: 1fr; }
+    .days, .aud-grid, .tries-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 40px 0; }
+    .steps li:nth-child(n) { margin-top: 0; }
+    .steps li:nth-child(odd) { padding-left: 0; }
+    .steps li:nth-child(even) { margin-top: 40px; }
+    .steps li + li::before { display: none; }
+    .steps li:nth-child(even)::before { display: block; height: 41px; }
     .day, .day + .day { padding: 30px 0; border-left: 0; }
     .day + .day { border-top: 0.5px solid var(--line-light); }
   }
@@ -306,10 +352,17 @@
     .ladder li:nth-child(4) .era { padding-left: 15%; }
     .ladder li.now .era { padding-left: 20%; }
     .numbers { grid-template-columns: 1fr 1fr; }
+    .logos { gap: 22px 30px; }
+    .logos img { max-height: 26px; max-width: 104px; }
+    .logos img.sq { max-height: 36px; }
+    .steps { grid-template-columns: 1fr; gap: 0; }
+    .steps li, .steps li + li, .steps li:nth-child(n) { margin: 0 0 0 calc(var(--i) * 7%); padding: 22px 0 30px; }
+    .steps li:nth-child(even)::before { display: none; }
     .reg-list li { grid-template-columns: 1fr; gap: 2px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-lines g { animation: none; }
+    .js .steps li { opacity: 1; transform: none; transition: none; }
     html { scroll-behavior: auto; }
   }
 </style>
@@ -338,9 +391,10 @@
     </svg>
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="hero-kicker">Kostenloses Online-Webinar mit Martin Groß</p>
-        <h1 id="hero-title">Führung im Zeitalter <em>von KI.</em></h1>
-        <p class="hero-sub">KI übernimmt einen wachsenden Teil der Managementarbeit. Was bleibt, ist der schwierige Teil: Entscheidungen unter Unsicherheit, Konflikte, Menschen, die Halt brauchen. Zwei Tage darüber, welche Fähigkeiten jetzt über gute Führung entscheiden, warum sie sich nicht anlesen lassen und wie du sie entwickelst.</p>
+        <p class="hero-event"><b>Führung im Zeitalter von KI</b><span>Kostenloses Live-Webinar mit Martin Groß</span></p>
+        <!-- ENTWURF: Verkaufsversprechen in der Headline noch mit Martin abzustimmen -->
+        <h1 id="hero-title">Relevant bleiben, <em>wenn KI übernimmt.</em></h1>
+        <p class="hero-sub">In zwei Tagen bekommst du Orientierung: was KI in Organisationen wirklich verändert, welche Fähigkeiten dadurch über gute Führung entscheiden und wie du sie gezielt entwickelst. Für Führungskräfte und für alle, die Führungskräfte begleiten.</p>
         <dl class="facts">
           <div><dt>Termin</dt><dd>25. + 26. Nov. 2026</dd></div>
           <div><dt>Umfang</dt><dd>2 × ca. 3 Stunden</dd></div>
@@ -355,26 +409,85 @@
     </div>
   </section>
 
+  <!-- ===== Trust logos (wie auf martingross.org) ===== -->
+  <section class="trust" aria-label="Auswahl an Auftraggebern">
+    <div class="wrap">
+      <p class="eyebrow">Auswahl an Auftraggebern</p>
+      <ul class="logos">
+        <li><img class="sq orig" src="images/logos/zeiss.png" alt="Zeiss" width="120" height="120"></li>
+        <li><img src="images/logos/susonity.png" alt="Susonity" width="479" height="120"></li>
+        <li><img src="images/logos/tuev-rheinland.png" alt="TÜV Rheinland" width="621" height="120"></li>
+        <li><img src="images/logos/shmf.png" alt="Schleswig-Holstein Musik Festival" width="446" height="120"></li>
+        <li><img src="images/logos/otto.png" alt="Otto" width="355" height="120"></li>
+        <li><img src="images/logos/rhenus.png" alt="Rhenus Logistics" width="574" height="120"></li>
+        <li><img src="images/logos/liz-mohn-stiftung.png" alt="Liz Mohn Stiftung" width="465" height="120"></li>
+        <li><img src="images/logos/kfw.png" alt="KfW" width="330" height="120"></li>
+        <li><img src="images/logos/mercedes-benz.png" alt="Mercedes-Benz" width="473" height="120"></li>
+        <li><img class="sq" src="images/logos/o2.png" alt="O2" width="124" height="120"></li>
+        <li><img src="images/logos/iu.png" alt="IU Internationale Hochschule" width="338" height="120"></li>
+        <li><img src="images/logos/grandcentrix.png" alt="grandcentrix" width="407" height="120"></li>
+        <li><img class="sq" src="images/logos/giz.png" alt="GIZ" width="120" height="120"></li>
+        <li><img class="sq" src="images/logos/bayer.png" alt="Bayer" width="120" height="120"></li>
+        <li><img class="sq orig" src="images/logos/bmw.png" alt="BMW" width="120" height="120"></li>
+        <li><img src="images/logos/db-schenker.png" alt="DB Schenker" width="669" height="120"></li>
+        <li><img src="images/logos/gastromatic.png" alt="gastromatic" width="268" height="120"></li>
+        <li><img src="images/logos/deloitte.png" alt="Deloitte" width="551" height="120"></li>
+        <li><img src="images/logos/aurelis.png" alt="Aurelis Real Estate" width="152" height="100"></li>
+        <li><img src="images/logos/ostermeier.png" alt="Ostermeier Großhandel" width="737" height="120"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Gains ===== -->
+  <section class="gains" aria-labelledby="gains-title">
+    <div class="wrap">
+      <h2 class="h2" id="gains-title">Was du aus den zwei Tagen <em>mitnimmst.</em></h2>
+      <ol class="steps">
+        <li style="--i:0"><h3>Orientierung.</h3><p>Du weißt, was KI in Organisationen gerade wirklich verändert, was Hype ist und was davon für dich relevant ist.</p></li>
+        <li style="--i:1"><h3>Fokus.</h3><p>Du kennst die Fähigkeiten, die in der Führung an Wert gewinnen, und weißt, worauf du dich für dich, dein Team und deine Organisation konzentrierst.</p></li>
+        <li style="--i:2"><h3>Handwerkszeug.</h3><p>Du gehst mit konkreten Ideen, wie du Führung in deiner Organisation gestaltest, oder als Trainer, Coach und Berater in deinen Mandaten.</p></li>
+        <li style="--i:3"><h3>Die Erfahrung.</h3><p>Du erlebst an Tag 2 selbst, wie schnell sich dein Zustand verändern lässt. Danach hast du einen Bezugspunkt im eigenen Körper, nicht nur ein Konzept.</p></li>
+      </ol>
+    </div>
+  </section>
+
   <!-- ===== Shift ===== -->
   <section class="shift" aria-labelledby="shift-title">
-    <div class="wrap shift-grid">
-      <div>
-        <h2 class="h2" id="shift-title">Die Managementarbeit wandert in die KI.</h2>
-        <div class="tasks" aria-label="Aufgaben, die zunehmend KI übernimmt">
-          <span>E-Mails</span><span>Protokolle</span><span>Reporting</span><span>Controlling</span><span>Tracking</span><span>Governance</span><span>Recherche</span><span>Analysen</span>
+    <div class="wrap">
+      <div class="shift-grid">
+        <div>
+          <h2 class="h2" id="shift-title">Die Managementarbeit wandert in die KI. <em>Der schwierige Teil bleibt.</em></h2>
+          <div class="tasks" aria-label="Aufgaben, die zunehmend KI übernimmt">
+            <span>E-Mails</span><span>Protokolle</span><span>Reporting</span><span>Controlling</span><span>Tracking</span><span>Governance</span><span>Recherche</span><span>Analysen</span>
+          </div>
+        </div>
+        <div>
+          <p class="lead">Meetings, Protokolle, Reporting, Steuerung: Lange war das der Kern des Führungsalltags, und wer lieferte, galt als gute Führungskraft. Jetzt rutscht diese Arbeit Schritt für Schritt in den KI-Layer. Was bleibt, sind die Momente, die dir kein System abnimmt:</p>
+          <ul class="moments">
+            <li class="mk">Die Entscheidung, die fällig ist, obwohl vieles unklar bleibt.</li>
+            <li class="mk">Der Konflikt im Team, der sich nicht länger glätten lässt.</li>
+            <li class="mk">Die Umstrukturierung, nach der Menschen Orientierung von dir brauchen.</li>
+            <li class="mk">Der Widerspruch, den du halten musst, statt ihn vorschnell aufzulösen.</li>
+          </ul>
+          <p class="aside">In keinem dieser Momente fehlt es an Wissen. Wäre mehr Wissen die Lösung, wäre das Thema längst erledigt.</p>
         </div>
       </div>
-      <div>
-        <p class="lead">Lange konnte man sich als Führungskraft hinter der eigenen Auslastung verstecken: Meetings, Mails, Protokolle, Steuerung. Wer lieferte, war eine gute Führungskraft, und vieles andere stand in der Soft-Skill-Ecke.</p>
-        <p class="lead">Genau diese Arbeit rutscht jetzt Schritt für Schritt in den KI-Layer. Damit wird sichtbar, was gute Führung schon immer ausgemacht hat und lange optional war:</p>
-        <ul class="skills">
-          <li>Emotionale Intelligenz</li>
-          <li>Klar bleiben unter Druck</li>
-          <li>Ambiguität und Widersprüche halten</li>
-          <li>Konflikte führen, statt sie zu glätten</li>
-          <li>Menschen Orientierung geben, wenn sich vieles verändert</li>
-        </ul>
-        <p class="aside">In keinem dieser Punkte fehlt es an Wissen. Wäre mehr Wissen die Lösung, wäre das Thema längst erledigt.</p>
+      <div class="tries">
+        <h2 class="h2">Was viele gerade versuchen. <em>Und warum es nicht trägt.</em></h2>
+        <div class="tries-grid">
+          <div class="try">
+            <h3>Den Überblick über die Tools suchen.</h3>
+            <p>Jede Woche kommt ein neues Werkzeug dazu. Wer sich daran orientiert, läuft hinterher, statt an den Prinzipien zu arbeiten, die unabhängig vom Tool tragen.</p>
+          </div>
+          <div class="try">
+            <h3>Noch eine Methode, noch ein Zertifikat.</h3>
+            <p>Der Werkzeugkasten wächst, die Wirkung nicht unbedingt. Modelle und Frameworks liefert inzwischen auch die KI, in Sekunden.</p>
+          </div>
+          <div class="try">
+            <h3>Präsenz verstehen wollen, statt sie zu üben.</h3>
+            <p>Ein Seminar über emotionale Intelligenz bleibt meist im Kopf. Unter Druck greift, was im Körper verankert ist.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -441,20 +554,20 @@
           <p class="day-date">Tag 1 · Mittwoch, 25. November</p>
           <h3>Die Landkarte.</h3>
           <ul>
-            <li>Was KI in Organisationen gerade wirklich verändert, und was nur Hype ist</li>
-            <li>Wie sich Führung verschiebt, wenn Managementarbeit automatisiert wird</li>
-            <li>Die Future-Leadership-Kompetenzen, die an Wert gewinnen</li>
-            <li>Warum sie verkörpert sind und sich nicht in drei Seminartagen lernen lassen</li>
+            <li class="mk"><b>Orientierung im KI-Wandel:</b> was sich in Organisationen wirklich verändert, was Hype ist und worauf du dich ausrichten solltest</li>
+            <li class="mk"><b>Wie sich Führung verschiebt:</b> welche Kompetenzen über den Erfolg von Organisationen und über Führungskarrieren entscheiden</li>
+            <li class="mk"><b>Was du gestalten kannst:</b> Ansätze systemischer Führung, mit Handwerkszeug für Team und Organisation</li>
+            <li class="mk"><b>Deine Standortbestimmung:</b> wo du stehst und wie dein nächster Entwicklungsschritt aussieht, für dich, dein Team oder deine Klienten</li>
           </ul>
         </div>
         <div class="day">
           <p class="day-date">Tag 2 · Donnerstag, 26. November</p>
           <h3>Die Erfahrung.</h3>
           <ul>
-            <li>Atemarbeit als Zustandslabor: was im Nervensystem passiert und warum es für Führung relevant ist</li>
-            <li>Eine geführte Session mit Conscious Connected Breathing, live und online</li>
-            <li>Von der eigenen Erfahrung in den Führungsalltag: Konflikt, Veränderung, schwieriges Gespräch</li>
-            <li>Wie du diese Fähigkeiten über die nächsten Monate gezielt entwickelst</li>
+            <li class="mk"><b>Erleben statt nur verstehen:</b> Atemarbeit als Zustandslabor, in dem du merkst, wie schnell sich Anspannung, Klarheit und Präsenz verändern lassen</li>
+            <li class="mk"><b>Eine geführte Session</b> mit Conscious Connected Breathing, live und online</li>
+            <li class="mk"><b>Ein Bezugspunkt für den Alltag:</b> du weißt, wie sich Regulation unter Intensität anfühlt, und erkennst sie im nächsten schwierigen Gespräch wieder</li>
+            <li class="mk"><b>Dein Weg nach dem Webinar:</b> wie du diese Fähigkeiten in den nächsten Monaten gezielt weiterentwickelst</li>
           </ul>
           <p class="breath-note"><strong>Zur Atemsession:</strong> Sie ist eine angeleitete Online-Variante, ruhiger als eine Session in Präsenz, und freiwillig. Hinweise zu Gegenanzeigen bekommst du mit der Anmeldebestätigung.</p>
         </div>
@@ -468,22 +581,28 @@
       <h2 class="h2" id="aud-title">Für Menschen, die Verantwortung für andere tragen.</h2>
       <div class="aud-grid">
         <div class="aud">
-          <h3>Du führst.</h3>
-          <p>Du bist Führungskraft, Geschäftsführer oder Teil eines Leitungsteams und merkst, dass die Anforderungen an dich schneller wachsen als deine innere Kapazität.</p>
-          <ul>
-            <li>Du willst verstehen, wie sich deine Rolle durch KI verändert</li>
-            <li>Du willst in Konflikt und Veränderung klarer und standfester werden</li>
-            <li>Du suchst keinen weiteren Methodenkoffer, sondern Tiefe</li>
-          </ul>
+          <img src="images/martin-business.jpg" alt="Martin Groß in einem Bürogebäude" width="1067" height="1600" loading="lazy" style="object-position: 50% 4%;">
+          <div class="aud-body">
+            <h3>Du führst.</h3>
+            <p>Du bist Führungskraft, Geschäftsführer oder Teil eines Leitungsteams und merkst, dass die Anforderungen an dich schneller wachsen als deine innere Kapazität.</p>
+            <ul>
+              <li class="mk">Du willst verstehen, wie sich deine Rolle durch KI verändert</li>
+              <li class="mk">Du willst in Konflikt und Veränderung klarer und standfester werden</li>
+              <li class="mk">Du suchst keinen weiteren Methodenkoffer, sondern Tiefe</li>
+            </ul>
+          </div>
         </div>
         <div class="aud">
-          <h3>Du entwickelst andere.</h3>
-          <p>Du arbeitest als Trainer, Coach, Berater oder in der Personalentwicklung und begleitest Führungskräfte und Teams im B2B-Umfeld.</p>
-          <ul>
-            <li>Du willst wissen, was Unternehmen künftig noch von dir brauchen</li>
-            <li>Du spürst, dass mehr Frameworks deine Wirkung nicht mehr vergrößern</li>
-            <li>Du willst Embodiment seriös und anschlussfähig in deine Arbeit bringen</li>
-          </ul>
+          <img src="images/martin-coaching.jpg" alt="Martin Groß im Coachinggespräch" width="1067" height="1600" loading="lazy" style="object-position: 50% 30%;">
+          <div class="aud-body">
+            <h3>Du entwickelst andere.</h3>
+            <p>Du arbeitest als Trainer, Coach, Berater oder in der Personalentwicklung und begleitest Führungskräfte und Teams im B2B-Umfeld.</p>
+            <ul>
+              <li class="mk">Du willst wissen, was Unternehmen künftig noch von dir brauchen</li>
+              <li class="mk">Du willst mit deiner Arbeit mehr bewirken als mit dem nächsten Framework</li>
+              <li class="mk">Du willst Embodiment seriös und anschlussfähig in deine Arbeit bringen</li>
+            </ul>
+          </div>
         </div>
       </div>
       <p class="aud-foot">Vorerfahrung mit Atemarbeit oder Embodiment brauchst du nicht. Hilfreich ist die Bereitschaft, dir nicht nur Inhalte anzuhören, sondern auch etwas bei dir selbst wahrzunehmen.</p>
@@ -499,7 +618,7 @@
       </figure>
       <div class="martin-text">
         <h2 class="h2" id="martin-title" style="margin-bottom: 30px;">Über Martin Groß.</h2>
-        <p class="quote">„Viele Führungsprobleme sind in Wahrheit Zustandsprobleme.“</p>
+        <p class="quote">„Was mir dann geholfen hat, kam von einer Seite, mit der ich lange nichts anfangen konnte.“</p>
         <p>Martin kommt aus der Welt der kognitiven High Performer: BWL in Köln, mit Mitte zwanzig Verantwortung für 2.500 Menschen bei AIESEC, danach ein eigenes Unternehmen und fünf Jahre als Manager bei Accenture, PwC und EY.</p>
         <p>Seit 2019 begleitet er als Trainer, Coach und Berater Führungskräfte, Teams und Organisationen. Er lehrt Unternehmensführung und KI an der TH Rosenheim, hat mit der Liz Mohn Stiftung das Future Leadership Training entwickelt und führt eine Praxis für Coaching und Atemarbeit bei München. Atemarbeit setzt er seit Jahren in Leadership-Programmen für Konzerne und Mittelstand ein, fundiert und ohne spirituelles Vokabular.</p>
         <div class="numbers">
@@ -507,8 +626,6 @@
           <div><b>5.000+</b><span>Stunden Coaching</span></div>
           <div><b>2.500+</b><span>Führungskräfte begleitet</span></div>
         </div>
-        <!-- ENTWURF: Logozeile, sobald Martin die Freigabe und Dateien schickt -->
-        <p class="clients"><strong>Erfahrung aus der Arbeit mit</strong> BMW, Bayer, Merck, Zeiss, DB Schenker, KfW, Deloitte und vielen Mittelständlern und Scale-ups.</p>
       </div>
     </div>
   </section>
@@ -585,6 +702,18 @@
     <span style="color: var(--on-dark-soft);">© 2026 Martin Groß Consulting</span>
   </div>
 </footer>
+
+<script>
+  // The four gain steps rise into place once, when they come into view.
+  (function () {
+    var steps = document.querySelector('.steps');
+    if (!steps || !('IntersectionObserver' in window)) return;
+    document.documentElement.classList.add('js');
+    new IntersectionObserver(function (entries, obs) {
+      if (entries[0].isIntersecting) { steps.classList.add('in'); obs.disconnect(); }
+    }, { threshold: 0.25 }).observe(steps);
+  })();
+</script>
 
 </body>
 </html>
